@@ -1,0 +1,14 @@
+Estudiante 1:
+  Nombre: Pedro Ruiz
+  Año Nac.: 2003
+  ID: 11111
+  Promedio: 4.5
+  Email: pedro@mail.com
+
+Estudiante 2:
+  Nombre: Maria Gomez
+  Año Nac.: 2001
+  ID: 67890
+  Promedio: 3.9
+  Email: maria@mail.com
+

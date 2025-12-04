@@ -1,0 +1,32 @@
+========================================
+      LISTADO DE ESTUDIANTES
+========================================
+
+Estudiante #1
+Nombre: Juan Pérez García
+Año de Nacimiento: 2000
+ID: ID001
+Promedio: 4.5
+Email: juan.perez@universidad.edu
+----------------------------------------
+Estudiante #2
+Nombre: María López Rodríguez
+Año de Nacimiento: 2001
+ID: ID002
+Promedio: 4.8
+Email: maria.lopez@universidad.edu
+----------------------------------------
+Estudiante #3
+Nombre: Carlos Martínez Silva
+Año de Nacimiento: 1999
+ID: ID003
+Promedio: 4.2
+Email: carlos.martinez@universidad.edu
+----------------------------------------
+Estudiante #4
+Nombre: Ana Gómez Torres
+Año de Nacimiento: 2002
+ID: ID004
+Promedio: 4.9
+Email: ana.gomez@universidad.edu
+----------------------------------------
