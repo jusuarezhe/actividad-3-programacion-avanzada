@@ -25,7 +25,7 @@ Cada programa es independiente y se ejecuta por separado.
 
 ---
 
-# 📌 código1.cpp — Lista Enlazada de Estudiantes
+#  código1.cpp — Lista Enlazada de Estudiantes
 
 ### **Metodología**
 - Implementación de una **lista enlazada simple** para almacenar estudiantes.
@@ -45,7 +45,7 @@ Comprender el manejo de listas enlazadas, punteros, memoria dinámica y operacio
 
 ---
 
-# 📌 código2.cpp — Radiografía (Procesamiento básico de imágenes en matriz)
+#  código2.cpp — Radiografía (Procesamiento básico de imágenes en matriz)
 
 ### **Metodología**
 - Implementación de una **matriz dinámica** para simular una radiografía.
@@ -61,7 +61,7 @@ Aplicar memoria dinámica bidimensional, manipulación de datos matriciales y de
 
 ---
 
-# 📌 código3.cpp — Juego de Dominó con Historial (POO + Listas Enlazadas)
+#  código3.cpp — Juego de Dominó con Historial (POO + Listas Enlazadas)
 
 ### **Metodología**
 - Basado en el ejercicio previo del juego de dominó.
