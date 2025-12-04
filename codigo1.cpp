@@ -3,9 +3,7 @@
 #include <string>
 using namespace std;
 
-// =====================================================
-// ESTRUCTURA DEL ESTUDIANTE
-// =====================================================
+// Estructura para guardar los datos del estudiante
 struct Estudiante {
     string nombreCompleto;
     int anoNacimiento;
@@ -14,9 +12,7 @@ struct Estudiante {
     string email;
 };
 
-// =====================================================
-// NODO DE LA LISTA
-// =====================================================
+// Nodo de la lista enlazada simple
 struct Nodo {
     Estudiante dato;
     Nodo* siguiente;
@@ -24,24 +20,16 @@ struct Nodo {
     Nodo(const Estudiante& est) : dato(est), siguiente(nullptr) {}
 };
 
-// =====================================================
-// CLASE LISTADO ESTUDIANTIL (LISTA ENLAZADA SIMPLE)
-// =====================================================
 class ListadoEstudiantil {
 private:
     Nodo* cabeza;
     int tamano;
 
 public:
-
-    // -------------------------------------------------
-    // Constructor: lista vacía
-    // -------------------------------------------------
+    // Lista vacía al inicio
     ListadoEstudiantil() : cabeza(nullptr), tamano(0) {}
 
-    // -------------------------------------------------
     // Insertar al final
-    // -------------------------------------------------
     void insertar(const Estudiante& est) {
         Nodo* nuevo = new Nodo(est);
 
@@ -56,9 +44,7 @@ public:
         tamano++;
     }
 
-    // -------------------------------------------------
-    // Buscar por identificacion → devuelve posición
-    // -------------------------------------------------
+    // Buscar estudiante por ID
     int buscar(int id) {
         Nodo* temp = cabeza;
         int pos = 1;
@@ -69,16 +55,14 @@ public:
             temp = temp->siguiente;
             pos++;
         }
-        return -1; // no encontrado
+        return -1;
     }
 
-    // -------------------------------------------------
-    // Eliminar nodo por ID
-    // -------------------------------------------------
+    // Eliminar estudiante por ID
     bool eliminar(int id) {
         if (!cabeza) return false;
 
-        // Caso: eliminar cabeza
+        // Eliminación de la cabeza
         if (cabeza->dato.identificacion == id) {
             Nodo* aux = cabeza;
             cabeza = cabeza->siguiente;
@@ -87,7 +71,7 @@ public:
             return true;
         }
 
-        // Buscar el nodo anterior
+        // Buscar nodo anterior
         Nodo* temp = cabeza;
         while (temp->siguiente &&
                temp->siguiente->dato.identificacion != id)
@@ -104,9 +88,7 @@ public:
         return true;
     }
 
-    // -------------------------------------------------
-    // Sobrecarga de operador [] para acceder por índice
-    // -------------------------------------------------
+    // Acceso por índice
     Estudiante operator[](int index) {
         if (index < 0 || index >= tamano) {
             throw out_of_range("Índice fuera de rango");
@@ -119,9 +101,7 @@ public:
         return temp->dato;
     }
 
-    // -------------------------------------------------
-    // Imprimir en archivo TXT
-    // -------------------------------------------------
+    // Imprimir lista completa en archivo TXT
     void imprimirTXT() {
         ofstream archivo("estudiantes.txt");
 
@@ -147,9 +127,7 @@ public:
         cout << "Archivo 'estudiantes.txt' generado correctamente.\n";
     }
 
-    // -------------------------------------------------
-    // Invertir la lista enlazada
-    // -------------------------------------------------
+    // Invertir la lista
     void invertir() {
         Nodo* prev = nullptr;
         Nodo* actual = cabeza;
@@ -165,9 +143,7 @@ public:
         cabeza = prev;
     }
 
-    // -------------------------------------------------
-    // Destructor: liberar memoria
-    // -------------------------------------------------
+    // Liberar memoria
     ~ListadoEstudiantil() {
         Nodo* temp;
         while (cabeza) {
@@ -180,9 +156,7 @@ public:
     int size() { return tamano; }
 };
 
-// =====================================================
-// MENÚ INTERACTIVO PARA OPERAR LA LISTA
-// =====================================================
+// Menu simple
 void mostrarMenu() {
     cout << "\n===== MENU LISTADO ESTUDIANTIL =====\n";
     cout << "1. Insertar estudiante\n";
@@ -195,9 +169,6 @@ void mostrarMenu() {
     cout << "Seleccione opcion: ";
 }
 
-// =====================================================
-// PROGRAMA PRINCIPAL
-// =====================================================
 int main() {
     ListadoEstudiantil lista;
     int opcion;

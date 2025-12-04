@@ -1,6 +1,4 @@
-// domino_historial.cpp
-// Basado en domino_fixed.cpp (usuario) -- añadido historial en lista enlazada
-// Corregido: addHistory con 3 parámetros, filename unificado y pequeños fixes.
+
 
 #include <iostream>
 #include <vector>
@@ -15,7 +13,7 @@
 
 using namespace std;
 
-// ==================== Clase Ficha ====================
+
 class Ficha {
 private:
     int a, b;
@@ -36,7 +34,7 @@ public:
     }
 };
 
-// ==================== Clase Jugador ====================
+
 class Jugador {
 private:
     string name;
@@ -59,7 +57,7 @@ public:
         return s;
     }
 
-    // mostramos la mano indexada desde 1
+    
     void showHand() const {
         cout << "\nMano de " << name << " (" << hand.size() << "):\n";
         for (int i = 0; i < (int)hand.size(); ++i) {
@@ -77,10 +75,10 @@ public:
         return false;
     }
 
-    // get copy of tile at index (0-based)
+    
     Ficha tileAt(int idx) const { return hand[idx]; }
 
-    // remove tile at idx and return it (ya devuelve copia)
+   
     Ficha playAt(int idx) {
         Ficha t = hand[idx];
         hand.erase(hand.begin() + idx);
@@ -88,7 +86,7 @@ public:
     }
 };
 
-// ==================== Nodo de historial (lista enlazada) ====================
+
 struct HistNode {
     string jugador;
     string ficha;    // texto de la ficha jugada, o "PASA"
@@ -97,17 +95,17 @@ struct HistNode {
     HistNode(const string& j, const string& f, const string& t) : jugador(j), ficha(f), tablero(t), sig(nullptr) {}
 };
 
-// ==================== Clase JuegoDomino (con historial enlazado) ====================
+
 class JuegoDomino {
 private:
-    vector<Ficha> deck;        // conjunto completo que se baraja
-    deque<Ficha> table;        // mesa (deque para poder push_front/push_back)
-    vector<Ficha> boneyard;    // fichas sobrantes (pozo) - por si se implementa robar
-    vector<Jugador*> players;  // punteros para facilitar limpieza y polimorfismo futuro
-    int currentIdx;            // índice del jugador actual
+    vector<Ficha> deck;        
+    deque<Ficha> table;        
+    vector<Ficha> boneyard;    
+    vector<Jugador*> players;  
+    int currentIdx;            
     mt19937 rng;
 
-    // Historial enlazado (simplemente cabeza y cola para append eficiente)
+    
     HistNode* histHead;
     HistNode* histTail;
 
@@ -119,15 +117,15 @@ private:
                 deck.emplace_back(i, j);
     }
 
-    // barajar deck usando rng
+    
     void shuffleDeck() {
         shuffle(deck.begin(), deck.end(), rng);
     }
 
-    // repartir 7 fichas por jugador; el resto a boneyard
+    // repartir 7 fichas por jugador; 
     void dealHands() {
         for (auto p : players) p->clearHand();
-        // deck ya barajado por quien llame a esta función
+        
         int idx = 0;
         int per = 7;
         for (int r = 0; r < per; ++r) {
@@ -137,12 +135,12 @@ private:
                 }
             }
         }
-        // restantes al boneyard (si quieres implementar robar)
+       
         boneyard.clear();
         while (idx < (int)deck.size()) boneyard.push_back(deck[idx++]);
     }
 
-    // determina quien comienza: mayor doble; si ninguno, ficha de mayor pips
+    // 
     int determineStarter() {
         int starter = 0;
         int bestDouble = -1;
@@ -158,7 +156,7 @@ private:
             }
         }
         if (bestDouble != -1) return starter;
-        // otherwise highest pip tile
+        
         int bestSum = -1;
         for (int i = 0; i < (int)players.size(); ++i) {
             for (int k = 0; k < players[i]->handSize(); ++k) {
@@ -187,15 +185,14 @@ private:
         return true;
     }
 
-    // Construye string que representa el tablero (lista de fichas)
+ 
     string tableToString() const {
         ostringstream ss;
         for (const auto& f : table) ss << f.str();
         return ss.str();
     }
 
-    // Agrega una entrada al historial enlazado
-    // ahora con estado opcional
+   
     void addHistory(const string& jugador, const string& fichaText, const string& estado = "") {
         string estadoFinal = estado.empty() ? tableToString() : estado;
         HistNode* node = new HistNode(jugador, fichaText, estadoFinal);
@@ -272,7 +269,7 @@ public:
         }
     }
 
-    // iniciar una ronda: crear deck, repartir y elegir quien inicia
+    
     void startRound() {
         // limpiar historial anterior
         clearHistory();
@@ -286,9 +283,9 @@ public:
         playRound();
     }
 
-    // lógica principal de la ronda (turnos secuenciales)
+    
     void playRound() {
-        int passesInRow = 0; // cuenta pases consecutivos para detectar bloqueo
+        int passesInRow = 0; 
         bool roundActive = true;
 
         while (roundActive) {
@@ -439,9 +436,7 @@ public:
     }
 };
 
-// -----------------------------
-// main
-// -----------------------------
+
 int main() {
     JuegoDomino game;
     game.mainMenu();
